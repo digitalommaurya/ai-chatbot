@@ -9,8 +9,8 @@ A web-based chatbot built with **Python**, **Scikit-Learn**, and **Flask**. This
 
 ## 🛠️ Tech Stack
 * **Backend**: Flask
-* **Machine Learning**: Scikit-Learn, NLTK/SpaCy
-* **Frontend**: HTML, CSS, JavaScript (AJAX for real-time chat)
+* **Machine Learning**: Scikit-Learn
+* **Frontend**: HTML, CSS, JavaScript 
 
 ## ⚙️ Installation & Setup
 
