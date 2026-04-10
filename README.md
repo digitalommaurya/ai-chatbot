@@ -1,20 +1,20 @@
 # AI Chatbot (Scikit-Learn & Flask)
 
-A web-based chatbot built with **Python**, **Scikit-Learn**, and **Flask**. This project uses machine learning to classify user intents and provide relevant responses.
+A lightweight intent-classification chatbot that uses Natural Language Processing (NLP) to understand user queries and respond based on predefined intents.
 
 ## 🚀 Features
-* **NLP-powered**: Uses Scikit-Learn (e.g., TF-IDF, Naive Bayes, or SVM) for text classification.
-* **Web UI**: A clean interface built with HTML/CSS and served via Flask.
-* **REST API**: Flask backend serves as an endpoint for chat queries.
+- **Machine Learning**: Built with `Scikit-Learn` using a Logistic Regression model.
+- **Text Vectorization**: Uses `TfidfVectorizer` to handle word importance.
+- **Web API**: Integrated with `Flask` for easy communication with a frontend.
 
-## 🛠️ Tech Stack
-* **Backend**: Flask
-* **Machine Learning**: Scikit-Learn
-* **Frontend**: HTML, CSS, JavaScript 
+## 🛠️ Project Structure
+- `train.py`: The script you provided to train the model and save `model.pkl` and `vectorizer.pkl`.
+- `intents.csv`: Your dataset containing `question` and `intent` columns.
+- `app.py`: The Flask server that loads the saved models and serves predictions.
 
-## ⚙️ Installation & Setup
+## 📦 Installation & Setup
 
-1. **Clone the repository**
+1. **Clone the repository**:
    ```bash
    git clone https://github.com
    cd ai-chatbot
