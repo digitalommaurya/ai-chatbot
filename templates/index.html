@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Course Enquiry Chatbot</title>
+    <style>
+        body { font-family: Arial; background: #f0f0f0; }
+        .chat-container { width: 400px; margin: 50px auto; background: #fff; border-radius: 8px; padding: 20px; box-shadow: 0 0 10px #aaa; }
+        .chat-box { height: 400px; overflow-y: auto; border: 1px solid #ddd; padding: 10px; }
+        .user-msg { text-align: right; margin: 10px 0; }
+        .bot-msg { text-align: left; margin: 10px 0; }
+        .msg { display: inline-block; padding: 8px 12px; border-radius: 15px; max-width: 80%; }
+        .user-msg .msg { background: #0084ff; color: white; }
+        .bot-msg .msg { background: #e5e5ea; color: black; }
+        #userInput { width: 80%; padding: 10px; }
+        #sendBtn { width: 18%; padding: 10px; background: #0084ff; color: white; border: none; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+<div class="chat-container">
+    <h3>Course Enquiry Bot</h3>
+    <div class="chat-box" id="chatBox"></div>
+    <input type="text" id="userInput" placeholder="Ask something...">
+    <button id="sendBtn">Send</button>
+</div>
+
+<script>
+const chatBox = document.getElementById('chatBox');
+const input = document.getElementById('userInput');
+const btn = document.getElementById('sendBtn');
+
+function appendMessage(sender, message) {
+    const div = document.createElement('div');
+    div.classList.add(sender + '-msg');
+    div.innerHTML = `<span class="msg">${message}</span>`;
+    chatBox.appendChild(div);
+    chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+function sendMessage() {
+    const message = input.value;
+    if (message.trim() === '') return;
+    
+    appendMessage('user', message);
+    input.value = '';
+    
+    // Typing animation
+    appendMessage('bot', 'Typing...');
+    const typingDiv = chatBox.lastChild;
+
+    fetch("/get", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: "message=" + encodeURIComponent(message)
+    })
+    .then(response => response.json())
+    .then(data => {
+        typingDiv.remove(); // remove typing
+        appendMessage('bot', data.response);
+    });
+}
+
+btn.addEventListener('click', sendMessage);
+input.addEventListener('keypress', function(e){
+    if(e.key === 'Enter') sendMessage();
+});
+</script>
+
+</body>
+</html>
